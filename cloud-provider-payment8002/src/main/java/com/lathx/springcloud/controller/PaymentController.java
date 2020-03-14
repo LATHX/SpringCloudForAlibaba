@@ -2,10 +2,10 @@ package com.lathx.springcloud.controller;
 
 import com.lathx.springcloud.entites.CommonResult;
 import com.lathx.springcloud.entites.Payment;
-import com.lathx.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import com.lathx.springcloud.service.PaymentService;
 
 import javax.annotation.Resource;
 
@@ -21,7 +21,7 @@ public class PaymentController {
     public CommonResult create(@RequestBody Payment payment) {
         int result = paymentService.create(payment);
         if (result > 0) {
-            return new CommonResult(200, "SUCCESS+" + serverPort, result);
+            return new CommonResult(200, "SUCCESS", result);
         } else {
             return new CommonResult(500, "Error");
         }
