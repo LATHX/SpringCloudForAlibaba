@@ -27,3 +27,4 @@ HELP.md
  
 ### VS Code ###
 .vscode/
+/cloud-provider-payment8001/target/
