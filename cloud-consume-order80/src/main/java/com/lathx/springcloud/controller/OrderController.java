@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @Slf4j
 public class OrderController {
-    public static final String PAYMENT_URL = "http://localhost:8081";
+    public static final String PAYMENT_URL = "http://localhost:8001";
     @Autowired
     private RestTemplate restTemplate;
 
