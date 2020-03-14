@@ -1,5 +1,6 @@
 HELP.md
 /target/
+/classes/
 !.mvn/wrapper/maven-wrapper.jar
 /*/target/
 ### STS ###
@@ -27,4 +28,4 @@ HELP.md
  
 ### VS Code ###
 .vscode/
-/cloud-provider-payment8001/target/
+target/
