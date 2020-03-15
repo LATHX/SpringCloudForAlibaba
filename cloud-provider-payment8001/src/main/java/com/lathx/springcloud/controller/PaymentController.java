@@ -10,6 +10,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @Slf4j
@@ -39,5 +40,15 @@ public class PaymentController {
         } else {
             return new CommonResult(500, "Error");
         }
+    }
+
+    @GetMapping("/payment/feign/timeout")
+    public String paymentFeignTimeOut() {
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "8001";
     }
 }
