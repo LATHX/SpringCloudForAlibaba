@@ -4,7 +4,9 @@ import com.lathx.springcloud.entites.CommonResult;
 import com.lathx.springcloud.entites.Payment;
 import com.lathx.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -16,6 +18,8 @@ public class PaymentController {
     private PaymentService paymentService;
     @Value("${server.port}")
     private String serverPort;
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
     @PostMapping("/payment/create")
     public CommonResult create(@RequestBody Payment payment) {
