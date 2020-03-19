@@ -2,7 +2,7 @@ package com.lathx.springcloud.service;
 
 import org.springframework.stereotype.Service;
 // 服务宕机的时候用FeignFallBack
-// 服务熔断
+// 服务降级
 @Service
 public class PaymentFallbackService implements PaymentHystrixService{
     @Override
@@ -13,5 +13,10 @@ public class PaymentFallbackService implements PaymentHystrixService{
     @Override
     public String paymentInfoTimeOut(Long id) {
         return "paymentInfoTimeOut fall back";
+    }
+
+    @Override
+    public String paymentCircuitBreaker(Integer id) {
+        return "paymentCircuitBreaker";
     }
 }
