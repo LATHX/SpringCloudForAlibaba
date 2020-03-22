@@ -1,9 +1,9 @@
 server:
-  port: 3355
+  port: 3366
 
 spring:
   application:
-    name: config-client
+    name: config-bus-client
   cloud:
     config:
       label: master
@@ -16,8 +16,6 @@ spring:
     port: 5672
     username: guest
     password: guest
-
-
 eureka:
   client:
     register-with-eureka: true
@@ -25,7 +23,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/
   instance:
-    instance-id: config-client
+    instance-id: config-bus-client
     prefer-ip-address: true
 
 # 暴露监控端口,Auto Refresh Config 更改Config后需要用POST请求刷新 3355 curl -X POST "http://localhost:3355/actuator/refresh"

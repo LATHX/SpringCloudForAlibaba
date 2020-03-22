@@ -20,6 +20,12 @@ spring:
             - springcloud-config
       #读取分支
       label: master
+  # RabbitMQ相关配置，bus消息总线用
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
@@ -34,3 +40,11 @@ eureka:
   instance:
     instance-id: cloud-config-center
     prefer-ip-address: true
+
+# RabbitMQ暴露bus刷新配置的端点,发送 POST请求到配置中心  curl -X POST "http://localhost:3344/actuator/bus-refresh" 一次广播，处处刷新
+# RabbitMQ定点刷新,发送 POST请求到配置中心  curl -X POST "http://localhost:3344/actuator/bus-refresh/config-client:3355" 只通知某个微服务，不通知全部
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
