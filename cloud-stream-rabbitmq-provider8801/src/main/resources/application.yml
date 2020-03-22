@@ -1,0 +1,41 @@
+server:
+  port: 8801
+
+
+spring:
+  application:
+    name: stream-consumer-client
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+      bindings: # 服务整合处理
+        output: # 通道名称
+          destination: studyExchange # exchange名
+          content-type: application/json
+          binder: defaultRabbit # 要绑定的服务的具体设置
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/
+  instance:
+    instance-id: stream-consumer-client
+    prefer-ip-address: true
+
+# 暴露监控端口,Auto Refresh Config 更改Config后需要用POST请求刷新 3355 curl -X POST "http://localhost:3355/actuator/refresh"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

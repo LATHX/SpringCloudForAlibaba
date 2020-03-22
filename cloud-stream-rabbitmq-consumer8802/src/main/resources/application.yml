@@ -1,0 +1,42 @@
+server:
+  port: 8802
+
+
+spring:
+  application:
+    name: stream-client
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+      bindings: # 服务整合处理
+        input: # 通道名称
+          destination: studyExchange # exchange名
+          content-type: application/json
+          binder: defaultRabbit # 要绑定的服务的具体设置
+          group: lathxA # 分组，防止消息重复消费 相同组不会重复消费，不同组会重复消费 默认的组消息丢失不保留，自定义的组保留
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/
+  instance:
+    instance-id: stream-client
+    prefer-ip-address: true
+
+# 暴露监控端口,Auto Refresh Config 更改Config后需要用POST请求刷新 3355 curl -X POST "http://localhost:3355/actuator/refresh"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
