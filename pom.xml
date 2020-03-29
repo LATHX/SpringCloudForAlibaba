@@ -30,6 +30,10 @@
         <module>cloudalibaba=provider=payment9002</module>
         <module>cloudalibaba-consumer-nacos-order8083</module>
         <module>cloudalibaba-config-nacos-client3377</module>
+        <module>cloudalibaba-sentinel-service8401</module>
+        <module>seata-order-service2001</module>
+        <module>seata-storage-service-9002</module>
+        <module>seata-account-service2003</module>
     </modules>
 
     <packaging>pom</packaging>
